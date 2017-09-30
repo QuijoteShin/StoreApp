@@ -1,0 +1,34 @@
+======== TODO ========
+- ** Finshes the Component status logic and loading of Store Details page so it passes in the clicked item
+- Fix using defaultStore in components as a crutch to Redux async data flow
+- Find a better way to managent application component state, it's a mess right now but works
+- Use TODO Hightlight extension inside apps
+- Add a completed stores component where we can review completed stores and archived notes
+- Add email trigger for when a store enters Ready For IT
+
+    -- StoreLoader Feature --
+        - Logic so it only loads the first 4 stores
+        - Logic to load in order of closest to open or next phase date first
+        - Add chevron + logic to load next 4 and cycle back
+        - Add a completed stores section so we can review archived stores
+
+    -- Store Data Component To Do --
+        - Display store data on a component
+        - back button to the intial view 
+        - save button + save functionally after adding IT notes or editing items
+        - test/troubleshoot save/load cycle of the specific store 
+
+
+
+======== NOTES ========
+server > emails > main.js
+config in that main.js
+export function sendEmail(arg1, arg2) { }
+possibly use email alerts npm package
+
+
+======== Completed ========
+- Add storeDetailView component
+- Full Redux load/save circle fixed
+- Fixed redux props data structure
+- Researched redux email triggers

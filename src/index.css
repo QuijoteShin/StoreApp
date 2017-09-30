@@ -1,0 +1,103 @@
+/* ========= BASE APP STYLING START ========= */
+body {
+    background: -webkit-linear-gradient(top, #ECEFF1 0%,#B0BEC5 100%); /* Chrome and Safari Webkit */
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+}
+.App {
+    margin: 3% 5%;
+}
+.fa-plus {
+    position: absolute;
+    top: 3%;
+    right: 12%;
+    font-size: 1em;
+}
+/* ========= BASE APP STYLING END ========= */
+
+
+/* ========= LOADER STYLING START ========= */
+.loaderContainer{
+    width: 100%;
+    height: 100%;
+    margin: 10px auto;
+}
+.loaderTitle {
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+.cardContainer {
+    margin-bottom: 5px;
+}
+.card-block {
+    padding: 2% 5%;
+}
+.card {
+    height: 100%;
+    margin-bottom: 5px;
+    background-color: #CFD8DC;
+    box-shadow: -3px -1px 13px -1px rgba(0,0,0,0.74);
+    -webkit-box-shadow: -3px -1px 13px -1px rgba(0,0,0,0.74);
+    -moz-box-shadow: -4px -2px 13px -1px rgba(0,0,0,0.74);
+}
+.card-title {
+    text-decoration: underline;
+    font-size: 1.7em;
+}
+.card-text {
+    width: 100;
+    font-size: .8em;
+}
+.viewBtn {
+    width: 100%;
+    color: black;
+    border: 1px solid #37474F;
+}
+.viewBtn:hover {
+    color: white !important;
+    opacity: .5;
+    background-color: #37474F;
+    border: 1px solid #37474F;
+}
+.cardStatus {
+    font-family: 'Oswald', sans-serif;
+    position:absolute;
+    top: 2px;
+    right: -3px;
+    height: 80px;
+    width: 100px;
+    padding-top: 5px;
+    border-radius: 2px;
+    text-align: center;
+    font-size: 1em;
+}
+.statusCircle {
+    align-content: center;
+    border: 3px solid grey;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position:absolute;
+    top: 30px;
+    right: 28.5px;
+}
+.circleFill {
+    background-color: #92F22A;
+}
+.addStoreBtn {
+    float: right;
+    margin-right: 18px;
+    margin-top: 5px;
+    font-size: .9em;
+    background-color: #CFD8DC;
+    border: 1px solid #37474F;
+    border-radius: 0px;
+    color: black;
+}
+.addStoreBtn:hover {
+    opacity: .5;
+    background-color: #37474F;
+    border: 1px solid #37474F;
+    border-radius: 5px;
+}
+/* ========= LOADER STYLING END ========= */
