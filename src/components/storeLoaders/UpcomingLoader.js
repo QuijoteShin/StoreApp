@@ -40,7 +40,7 @@ class UpcomingStoreLoader extends Component {
                                         </div>
                                         <a 
                                             className="btn btn-outline-secondary viewBtn"
-                                            onClick={ () => this.openStoreDetailsView(store._id)}
+                                            onClick={ () => this.openStoreDetailsView(store)}
                                             >View</a>
                                     </div>
                                 </div>

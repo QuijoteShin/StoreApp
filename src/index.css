@@ -101,3 +101,25 @@ body {
     border-radius: 5px;
 }
 /* ========= LOADER STYLING END ========= */
+
+/* ========= Store Details STYLING START ========= */
+.storeDetailsHolder {
+    position: relative;
+    margin: 5% 5%;
+    background-color: #CFD8DC;
+    box-shadow: -3px -1px 13px -1px rgba(0,0,0,0.74);
+    -webkit-box-shadow: -3px -1px 13px -1px rgba(0,0,0,0.74);
+    -moz-box-shadow: -4px -2px 13px -1px rgba(0,0,0,0.74);
+}
+.notesArea {
+    border: 1px solid red;
+}
+.statusArea {
+    border: 1px solid red;
+}
+.infoArea {
+    border: 1px solid red;
+}
+
+
+/* ========= Store Details STYLING END ========= */
