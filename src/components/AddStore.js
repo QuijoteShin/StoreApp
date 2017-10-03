@@ -1,45 +1,67 @@
 import React, { Component } from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Form, FormGroup, Label, Input } from 'reactstrap'
 
 import { connect } from 'react-redux'
 //import { setStores } from '../actions'
 import * as actions from '../actions'
 
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
 
 class AddStore extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            modal: false,
+            open: false,
             storeNumber: null,
             storeName: null,
             constStart: null,
             constEnd: null,
             storeOpen: null
         }
-        this.toggle = this.toggle.bind(this)
-        this.saveStore = this.saveStore.bind(this)
     }
 
-    toggle() {
-        this.setState({
-            modal: !this.state.modal
-        })
-    }
-
-    saveStore() {
+    handleOpen = () => {
+        this.setState({open: true})
+    };
+    
+    handleClose = () => {
         const storeData = this.state
-        this.toggle()
+        this.setState({open: false})
         this.props.saveStoreToServer(storeData)
-    }
+    };
 
     render() {
+
+        const actions = [
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onClick={this.handleClose}
+            />,
+            <FlatButton
+              label="Submit"
+              primary={true}
+              keyboardFocused={true}
+              onClick={this.handleClose}
+            />,
+            ]
+
         return(
             <div>
-                <Button color="danger" onClick={this.toggle} className="addStoreBtn">Add Store</Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.toggle}>Add A New Store</ModalHeader>
-                <ModalBody>
+                <FloatingActionButton mini={true} secondary={true} className="addStore" onClick={this.handleOpen} >
+                    <ContentAdd />
+                </FloatingActionButton>
+
+                <Dialog
+                title="Add A New Store"
+                actions={actions}
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.handleClose}
+                >
                     <Form>
                         <FormGroup>
                             <Label for="Store Number">Store Number</Label>
@@ -92,12 +114,7 @@ class AddStore extends Component {
                             />
                         </FormGroup>
                     </Form>       
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" onClick={this.saveStore}>Save</Button>{' '}
-                    <Button color="secondary" onClick={this.toggle}>Close</Button>
-                </ModalFooter>
-                </Modal>
+                </Dialog>
             </div>
         )
     }

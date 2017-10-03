@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
+
+import Paper from 'material-ui/Paper'
+
 const dateFormat = require('dateformat')
+
+
 
 
 class ReadyForItLoader extends Component {
@@ -17,7 +22,16 @@ class ReadyForItLoader extends Component {
             }
         })
 
+        const style = {
+            height: 100,
+            width: 100,
+            margin: 20,
+            textAlign: 'center',
+            display: 'inline-block',
+        }
+
         return (
+            
             <div className="row loaderContainer">
                 {
                     readyForItStores.map( store => {
@@ -44,6 +58,14 @@ class ReadyForItLoader extends Component {
     }
 
     render() {
+        const style = {
+            height: 100,
+            width: 100,
+            margin: 20,
+            textAlign: 'center',
+            display: 'inline-block',
+        }
+
         return(
             <div>
                 { this.renderStores() }

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import App from './components/App'
 import './index.css'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 
 import { createStore, applyMiddleware, compose } from 'redux'
@@ -16,19 +17,18 @@ const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 ));
 
 
-/*
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-)
-*/
+const AppStyled = () => (
+  <MuiThemeProvider>
+    <App />
+  </MuiThemeProvider>
+);
 
 
 //store.subscribe( () => console.log('store', store.getState()))
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppStyled />
   </Provider>,
   document.querySelector('#root')
 )

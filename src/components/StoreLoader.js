@@ -5,6 +5,9 @@ import ReadyForItLoader from './storeLoaders/ReadyForItLoader'
 import UnderConstLoader from './storeLoaders/UnderConstLoader'
 import UpcomingStoreLoader from './storeLoaders/UpcomingLoader'
 
+import {Tabs, Tab} from 'material-ui/Tabs'
+import FontIcon from 'material-ui/FontIcon'
+
 import * as actions from '../actions'
 
 
@@ -20,27 +23,35 @@ class StoreLoader extends Component {
 
     render() {
         return(
-                <div>
-                    <div className="loaderContainer">
-                        <h3 className="loaderTitle">Ready For IT
-                        </h3>
+            <div>
+                <Tabs>
+                    <Tab
+                    icon={<FontIcon className="material-icons">settings_input_composite</FontIcon>}
+                    label="IT Ready"
+                    >
                         <ReadyForItLoader storeData={this.props.data}/>
-                    </div>
-
-                    
-                    <div className="loaderContainer">
-                        <h3 className="loaderTitle">Under Construction</h3>
+                    </Tab>
+                    <Tab
+                    icon={<FontIcon className="material-icons">build</FontIcon>}
+                    label="Construction"
+                    >
                         <UnderConstLoader storeData={this.props.data}/>
-                    </div>
-
-                    
-                    <div className="loaderContainer">
-                        <h3 className="loaderTitle">Upcoming Stores</h3>
+                    </Tab>
+                    <Tab
+                    icon={<FontIcon className="material-icons">next_week</FontIcon>}
+                    label="upcoming"
+                    >
                         <UpcomingStoreLoader storeData={this.props.data} loaderStatus={this.props.StoreLoaderActive}/>
-                    </div>
-
-                </div>
-
+                    </Tab>
+                    <Tab
+                    icon={<FontIcon className="material-icons">archive</FontIcon>}
+                    label="archived"
+                    >
+                    Soon
+                    </Tab>
+                </Tabs>
+            </div>
+                
         )
     }
 }

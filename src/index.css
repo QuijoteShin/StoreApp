@@ -1,26 +1,23 @@
 /* ========= BASE APP STYLING START ========= */
 body {
-    background: -webkit-linear-gradient(top, #ECEFF1 0%,#B0BEC5 100%); /* Chrome and Safari Webkit */
+    background: #ECECEC; /* Chrome and Safari Webkit */
     font-family: 'Roboto', sans-serif;
     height: 100vh;
 }
 .App {
-    margin: 3% 5%;
+    margin: 1.5% 5%;
 }
-.fa-plus {
-    position: absolute;
-    top: 3%;
-    right: 12%;
-    font-size: 1em;
-}
+
 /* ========= BASE APP STYLING END ========= */
+
+
 
 
 /* ========= LOADER STYLING START ========= */
 .loaderContainer{
     width: 100%;
     height: 100%;
-    margin: 10px auto;
+    margin: 15px auto;
 }
 .loaderTitle {
     text-decoration: underline;
@@ -123,3 +120,9 @@ body {
 
 
 /* ========= Store Details STYLING END ========= */
+
+/* New Material UI Styles */
+.addStore {
+    float: right;
+    margin-bottom: 10px;
+}
