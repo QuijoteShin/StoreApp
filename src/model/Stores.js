@@ -9,13 +9,22 @@ const storeSchema = new Schema({
     constStart: String,
     constEnd: String,
     storeOpen: String,
-    itComments: [ 
-        {
+    itComments: {
             techName: String,
             submitDate: String,
             notes: String
-        }
-    ]
+    },
+    oldNetworkInfo: {
+            internet: String,
+            phone: String,
+    },
+    newNetworkInfo: {
+            internet: String,
+            phone: String,
+    },
+    posEquipmentFinished: Boolean,
+    networkEquipmentFinished: Boolean,
+    storeOnline: Boolean
 })
 
 module.exports = mongoose.model('Store', storeSchema)

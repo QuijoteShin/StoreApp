@@ -1,11 +1,11 @@
 /* ========= BASE APP STYLING START ========= */
 body {
-    background: #ECECEC; /* Chrome and Safari Webkit */
+    background: #ECF0F1; /* Chrome and Safari Webkit */
     font-family: 'Roboto', sans-serif;
     height: 100vh;
 }
 .App {
-    margin: 1.5% 5%;
+    margin: 2% 5%;
 }
 
 /* ========= BASE APP STYLING END ========= */
@@ -24,7 +24,7 @@ body {
     margin-bottom: 20px;
 }
 .cardContainer {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 .card-block {
     padding: 2% 5%;
@@ -32,7 +32,7 @@ body {
 .card {
     height: 100%;
     margin-bottom: 5px;
-    background-color: #CFD8DC;
+    background-color: #ecf0f1;
     box-shadow: -3px -1px 13px -1px rgba(0,0,0,0.74);
     -webkit-box-shadow: -3px -1px 13px -1px rgba(0,0,0,0.74);
     -moz-box-shadow: -4px -2px 13px -1px rgba(0,0,0,0.74);
@@ -125,4 +125,7 @@ body {
 .addStore {
     float: right;
     margin-bottom: 10px;
+}
+.cancelBtnModal {
+    margin-right: 10px;
 }

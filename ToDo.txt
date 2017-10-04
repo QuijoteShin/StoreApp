@@ -7,9 +7,7 @@
 - Add email trigger for when a store enters Ready For IT
 
     -- StoreLoader Feature --
-        - Logic so it only loads the first 4 stores
         - Logic to load in order of closest to open or next phase date first
-        - Add chevron + logic to load next 4 and cycle back
         - Add a completed stores section so we can review archived stores
 
     -- Store Data Component To Do --

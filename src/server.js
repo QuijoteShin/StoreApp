@@ -54,6 +54,10 @@ router.route('/stores')
         store.constStart = req.body.constStart
         store.constEnd = req.body.constEnd
         store.storeOpen = req.body.storeOpen
+        store.oldNetworkInfo.internet = req.body.oldNetworkInfo.internet
+        store.oldNetworkInfo.phone = req.body.oldNetworkInfo.phone
+        store.newNetworkInfo.internet = req.body.newNetworkInfo.internet
+        store.newNetworkInfo.phone = req.body.newNetworkInfo.phone
 
         store.save(function(err, store) {
             console.log(store)

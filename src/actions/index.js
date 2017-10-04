@@ -32,13 +32,15 @@ export function loadStoresFromServer() {
 export function saveStoreToServer(storeInfo) {
     return function(dispatch) {
         const ROOT_URL = 'http://localhost:3001/api/stores'
-        //console.log('data structure', storeInfo)
+        console.log('data structure', storeInfo)
         axios.post(ROOT_URL, {
             storeNumber: storeInfo.storeNumber,
             storeName: storeInfo.storeName,
             constStart: storeInfo.constStart,
             constEnd: storeInfo.constEnd,
-            storeOpen: storeInfo.storeOpen
+            storeOpen: storeInfo.storeOpen,
+            oldNetworkInfo: Object.assign({}, storeInfo.oldNetworkInfo, { internet: storeInfo.oldNetworkInfo.internet, phone: storeInfo.oldNetworkInfo.phone }),
+            newNetworkInfo: Object.assign({}, storeInfo.newNetworkInfo, { internet: storeInfo.newNetworkInfo.internet, phone: storeInfo.newNetworkInfo.phone })
         })
         .then( response => {
             console.log(response)
