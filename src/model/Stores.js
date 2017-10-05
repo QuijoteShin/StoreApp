@@ -22,6 +22,7 @@ const storeSchema = new Schema({
             internet: String,
             phone: String,
     },
+    interface: Boolean,
     posEquipmentFinished: Boolean,
     networkEquipmentFinished: Boolean,
     storeOnline: Boolean

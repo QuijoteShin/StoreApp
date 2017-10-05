@@ -26,7 +26,7 @@ class StoreLoader extends Component {
             <div>
                 <Tabs>
                     <Tab
-                    icon={<FontIcon className="material-icons">settings_input_composite</FontIcon>}
+                    icon={<FontIcon className="material-icons">computer</FontIcon>}
                     label="IT Ready"
                     >
                         <ReadyForItLoader storeData={this.props.data}/>

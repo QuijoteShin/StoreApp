@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { updateComponentState } from '../../actions/index'
+
 const dateFormat = require('dateformat')
 
 class UnderConstLoader extends Component {
+
+    openStoreDetailsView(store){
+        this.props.dispatch(updateComponentState({StoreDetailsViewActive: true, AddStoreActive: false, StoreLoaderActive: false, loadedStore: store}))
+    }
+
     renderStores() {
         const todaysDate = new Date()
         const readyForItStores = []
@@ -28,7 +36,10 @@ class UnderConstLoader extends Component {
                                             Status
                                             <div className="statusCircle circleFill"/>
                                         </div>
-                                        <a className="btn btn-outline-secondary viewBtn">View</a>
+                                        <a 
+                                            className="btn btn-outline-secondary viewBtn"
+                                            onClick={ () => this.openStoreDetailsView(store)}
+                                            >View</a>
                                     </div>
                                 </div>
                             </div>
@@ -52,4 +63,8 @@ UnderConstLoader.defaultProps = {
     storeData: []
 }
 
-export default UnderConstLoader
+function mapStateToProps(state) {
+    return { componentState: state.stores.componentState }
+}
+
+export default connect(mapStateToProps)(UnderConstLoader)

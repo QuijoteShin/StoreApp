@@ -13,6 +13,9 @@ import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import DatePicker from 'material-ui/DatePicker'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import Divider from 'material-ui/Divider'
 import {
     Step,
     Stepper,
@@ -21,6 +24,19 @@ import {
 
 const dateFormat = require('dateformat')
 
+const styles = {
+    leftPadding: {
+        marginLeft: '20px'
+    },
+    displayInline: {
+        width: '40%',
+        display: 'inline'
+    },
+    divider: {
+        width: '40%',
+        float: 'left'
+    }
+}
 
 class AddStore extends Component {
     constructor(props) {
@@ -41,12 +57,17 @@ class AddStore extends Component {
             newNetworkInfo: {
                 internet: "",
                 phone: ""
-            }
+            },
+            interface: null,
+            posCount: null
         }
         this.handleDatechangeConstStart = this.handleDatechangeConstStart.bind(this)
         this.handleDatechangeConstEnd = this.handleDatechangeConstEnd.bind(this)
         this.handleDatechangeStoreOpen = this.handleDatechangeStoreOpen.bind(this)
-        
+        this.oldNetUpdate = this.oldNetUpdate.bind(this)
+        this.oldPhoneUpdate = this.oldPhoneUpdate.bind(this)
+        this.newNetUpdate = this.newNetUpdate.bind(this)
+        this.newPhoneUpdate = this.newPhoneUpdate.bind(this)
     }
 
     handleOpen = () => {
@@ -57,7 +78,7 @@ class AddStore extends Component {
         const storeData = this.state
         this.setState({open: false})
         this.props.saveStoreToServer(storeData)
-        console.log(this.state)
+        this.handleCloseNoSave()
     }
 
     handleCloseNoSave = () => {
@@ -77,7 +98,9 @@ class AddStore extends Component {
             newNetworkInfo: {
                 internet: "",
                 phone: ""
-            }
+            },
+            interface: null,
+            posCount: null,
         })
     }
 
@@ -109,34 +132,63 @@ class AddStore extends Component {
         this.setState({storeOpen: newDate})
     }
 
+    oldNetUpdate(event, index, value) {
+        this.setState( {oldNetworkInfo: Object.assign({}, this.state.oldNetworkInfo, { internet: value})} )
+    }
+    oldPhoneUpdate(event, index, value) {
+        this.setState( {oldNetworkInfo: Object.assign({}, this.state.oldNetworkInfo, { phone: value})} )
+    }
+    newNetUpdate(event, index, value) {
+        this.setState( {newNetworkInfo: Object.assign({}, this.state.newNetworkInfo, { internet: value})} )
+    }
+    newPhoneUpdate(event, index, value) {
+        this.setState( {newNetworkInfo: Object.assign({}, this.state.newNetworkInfo, { phone: value})} )
+    }
 
       getStepContent(stepIndex) {
         switch (stepIndex) {
           case 0:
             return (
                 <div>
+                    <h4>Store Info</h4>
+                    <Divider style={styles.divider} />
                     <TextField
                         floatingLabelText="Store Number"
                         value={this.state.storeNumber}
                         onChange={ event => this.setState({storeNumber: event.target.value})}
-                    /><br/>
+                    />
                     <TextField
                         floatingLabelText="Store Name"
                         value={this.state.storeName}
                         onChange={ event => this.setState({storeName: event.target.value})} 
-                    /><br/>
-                    <DatePicker 
-                        floatingLabelText="Construction Start Date"
-                        hintText="Construction Start Date"
-                        autoOk={true}
-                        onChange={ this.handleDatechangeConstStart }
+                        style={styles.leftPadding}
                     />
-                    <DatePicker 
-                        floatingLabelText="Construction End Date"
-                        hintText="Construction End Date"
-                        autoOk={true}
-                        onChange={ this.handleDatechangeConstEnd }
-                    />
+                    <br/> <br/>
+                    <h4>Important Dates</h4>
+                    <Divider style={styles.divider} />
+                    <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <DatePicker 
+                                    floatingLabelText="Construction Start Date"
+                                    hintText="Construction Start Date"
+                                    autoOk={true}
+                                    onChange={ this.handleDatechangeConstStart }
+                                />
+                            </td>
+                            <td>
+                                <DatePicker 
+                                    floatingLabelText="Construction End Date"
+                                    hintText="Construction End Date"
+                                    autoOk={true}
+                                    onChange={ this.handleDatechangeConstEnd }
+                                    style={styles.leftPadding}
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
                     <DatePicker 
                         floatingLabelText="Store Open Date"
                         hintText="Store Open Date"
@@ -148,26 +200,64 @@ class AddStore extends Component {
           case 1:
             return (
                 <div>
-                    <TextField
-                        floatingLabelText="Old DSL Provider"
+                    <h4>Network Info</h4>
+                    <Divider style={styles.divider} />
+                    <SelectField
+                        floatingLabelText="Old Network Provider"
                         value={this.state.oldNetworkInfo.internet}
-                        onChange={ event => this.setState( {oldNetworkInfo: Object.assign({}, this.state.oldNetworkInfo, { internet: event.target.value})} ) }
-                    /><br/>
-                    <TextField
-                        floatingLabelText="Old Phone Provider"
+                        onChange={ this.oldNetUpdate }
+                    >
+                        <MenuItem value={"Granite"} primaryText="Granite" />
+                        <MenuItem value={"GTT"} primaryText="GTT" />
+                        <MenuItem value={"AirCard"} primaryText="AirCard" />
+                        <MenuItem value={"Local DSL Provider"} primaryText="Local DSL Provider" />
+                    </SelectField>
+                    <SelectField
+                        floatingLabelText="Old Phone Carrier"
                         value={this.state.oldNetworkInfo.phone}
-                        onChange={ event => this.setState( {oldNetworkInfo: Object.assign({}, this.state.oldNetworkInfo, { phone: event.target.value})} ) }
-                    /><br/>
-                    <TextField
-                        floatingLabelText="New DSL Provider"
+                        onChange={ this.oldPhoneUpdate }
+                        style={styles.leftPadding}
+                    >
+                        <MenuItem value={"MetTel"} primaryText="MetTel" />
+                        <MenuItem value={"Verizon Wireless"} primaryText="Verizon Wireless" />
+                        <MenuItem value={"Sprint"} primaryText="Sprint" />
+                        <MenuItem value={"ATT"} primaryText="ATT" />
+                        <MenuItem value={"Local Carrier"} primaryText="Local Carrier" />
+                    </SelectField>
+                    <br />
+                    <SelectField
+                        floatingLabelText="New Network Provider"
                         value={this.state.newNetworkInfo.internet}
-                        onChange={ event => this.setState( {newNetworkInfo: Object.assign({}, this.state.newNetworkInfo, { internet: event.target.value})} ) }
-                    /><br/>
-                    <TextField
-                        floatingLabelText="New Phone Provider"
+                        onChange={ this.newNetUpdate }
+                    >
+                        <MenuItem value={"Granite"} primaryText="Granite" />
+                        <MenuItem value={"GTT"} primaryText="GTT" />
+                        <MenuItem value={"AirCard"} primaryText="AirCard" />
+                        <MenuItem value={"Local DSL Provider"} primaryText="Local DSL Provider" />
+                    </SelectField>
+                    <SelectField
+                        floatingLabelText="New Phone Carrier"
                         value={this.state.newNetworkInfo.phone}
-                        onChange={ event => this.setState( {newNetworkInfo: Object.assign({}, this.state.newNetworkInfo, { phone: event.target.value})} ) }
-                    /><br/>
+                        onChange={ this.newPhoneUpdate }
+                        style={styles.leftPadding}
+                    >
+                        <MenuItem value={"MetTel"} primaryText="MetTel" />
+                        <MenuItem value={"Verizon Wireless"} primaryText="Verizon Wireless" />
+                        <MenuItem value={"Sprint"} primaryText="Sprint" />
+                        <MenuItem value={"ATT"} primaryText="ATT" />
+                        <MenuItem value={"Local Carrier"} primaryText="Local Carrier" />
+                    </SelectField>
+                    <br />
+                    <SelectField
+                        floatingLabelText="Interface Store?"
+                        value={this.state.interface}
+                        onChange={(event, index, value) => this.setState({interface: value})}
+                        autoWidth={true}
+                        >
+                        <MenuItem value={false} primaryText="No" />
+                        <MenuItem value={true} primaryText="Yes" />
+                    </SelectField>
+                    <br />
                 </div>
             );
           case 2:
@@ -189,8 +279,7 @@ class AddStore extends Component {
 
     render() {
         const {finished, stepIndex} = this.state
-        const contentStyle = {margin: '0 16px'}
-
+        const contentStyle = {margin: '0 14px'}
         const actions = [
             <RaisedButton
               label="Close"

@@ -1,0 +1,9 @@
+======== TODO ========
+
+-   Add Redux
+-   Store addnewStoreButton in props
+-   Look into using Firebase as DB
+-   Add logic for loading first 4 stores in order by date open
+
+
+
