@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-
 import { updateComponentState } from '../../actions/index'
+
 
 const dateFormat = require('dateformat')
 
 
-class UpcomingStoreLoader extends Component {
 
+
+class ArchivedLaoder extends Component {
 
     openStoreDetailsView(store){
         this.props.dispatch(updateComponentState({StoreDetailsViewActive: true, AddStoreActive: false, StoreLoaderActive: false, loadedStore: store}))
@@ -15,18 +16,18 @@ class UpcomingStoreLoader extends Component {
 
     renderStores() {
         const todaysDate = new Date()
-        const readyForItStores = []
+        const archivedStores = []
+        //console.log('readyForItComponent', this.props)
         this.props.storeData.forEach( store => {
-            const constStartDate = Date.parse(store.constStart)
-            if(constStartDate > todaysDate) {
-                readyForItStores.push(store)
+            const storeOpenDate = Date.parse(store.storeOpen)
+            if(todaysDate > storeOpenDate) {
+                archivedStores.push(store)
             }
         })
-        
         return (
             <div className="row loaderContainer">
                 {
-                    readyForItStores.map( store => {
+                    archivedStores.map( store => {
                         return(
                             <div key={store._id} className="col-lg-3 col-md-3 col-sm-6 cardContainer">
                                 <div className="card">
@@ -53,17 +54,14 @@ class UpcomingStoreLoader extends Component {
     }
 
 
-
     render() {
-        return(
-            <div>
-                { this.renderStores() }
-            </div>
+        return (
+            <div> { this.renderStores() } </div>
         )
     }
 }
 
-UpcomingStoreLoader.defaultProps = {
+ArchivedLaoder.defaultProps = {
     storeData: []
 }
 
@@ -71,4 +69,4 @@ function mapStateToProps(state) {
     return { componentState: state.stores.componentState }
 }
 
-export default connect(mapStateToProps)(UpcomingStoreLoader)
+export default connect(mapStateToProps)(ArchivedLaoder)

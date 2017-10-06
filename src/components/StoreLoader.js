@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import ReadyForItLoader from './storeLoaders/ReadyForItLoader'
 import UnderConstLoader from './storeLoaders/UnderConstLoader'
 import UpcomingStoreLoader from './storeLoaders/UpcomingLoader'
+import ArchivedLoader from './storeLoaders/ArchivedLoader'
 
 import {Tabs, Tab} from 'material-ui/Tabs'
 import FontIcon from 'material-ui/FontIcon'
@@ -47,7 +48,7 @@ class StoreLoader extends Component {
                     icon={<FontIcon className="material-icons">archive</FontIcon>}
                     label="archived"
                     >
-                    Soon
+                        <ArchivedLoader storeData={this.props.data}  />
                     </Tab>
                 </Tabs>
             </div>

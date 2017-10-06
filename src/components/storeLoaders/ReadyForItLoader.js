@@ -23,16 +23,13 @@ class ReadyForItLoader extends Component {
                 readyForItStores.push(store)
             }
         })
-
-
-
         return (
             
             <div className="row loaderContainer">
                 {
                     readyForItStores.map( store => {
                         return(
-                            <div key={store.storeNumber} className="col-lg-3 col-md-3 col-sm-6 cardContainer">
+                            <div key={store._id} className="col-lg-3 col-md-3 col-sm-6 cardContainer">
                                 <div className="card">
                                     <div className="card-block">
                                         <h3 className="card-title"> { store.storeNumber } </h3>

@@ -45,16 +45,19 @@ class StoreDetailsView extends Component {
         this.props.dispatch(updateComponentState({StoreDetailsViewActive: false, AddStoreActive: true, StoreLoaderActive: true, loadedStore: null}))
     }
 
+    saveStoreDetailView(detailViewData) {
+        this.props.dispatch(updateComponentState({StoreDetailsViewActive: false, AddStoreActive: true, StoreLoaderActive: true, loadedStore: null}))
+    }
+
 
     render(){
-        console.log('storedetailview', this.props.store)
         return(
             <div style={styles.container}>
                 <FloatingActionButton style={styles.backIcon} mini={true} secondary={true}>
                     <FontIcon className="material-icons" onClick={ () => this.backtoStoreLoader() }>arrow_back</FontIcon>
                 </FloatingActionButton>
                 <FloatingActionButton style={styles.saveIcon} mini={true} secondary={true}>
-                    <FontIcon className="material-icons" onClick={ () => this.backtoStoreLoader() }>done</FontIcon>
+                    <FontIcon className="material-icons" onClick={ () => this.saveStoreDetailView() }>done</FontIcon>
                 </FloatingActionButton>
                 <Tabs
                     value={this.state.value}

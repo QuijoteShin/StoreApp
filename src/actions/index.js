@@ -41,7 +41,8 @@ export function saveStoreToServer(storeInfo) {
             storeOpen: storeInfo.storeOpen,
             oldNetworkInfo: Object.assign({}, storeInfo.oldNetworkInfo, { internet: storeInfo.oldNetworkInfo.internet, phone: storeInfo.oldNetworkInfo.phone }),
             newNetworkInfo: Object.assign({}, storeInfo.newNetworkInfo, { internet: storeInfo.newNetworkInfo.internet, phone: storeInfo.newNetworkInfo.phone }),
-            interface: storeInfo.interface
+            interface: storeInfo.interface,
+            type: storeInfo.type
         })
         .then( response => {
             console.log(response)
@@ -56,3 +57,4 @@ export function saveStoreToServer(storeInfo) {
         })
     }
 }
+

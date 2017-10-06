@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import StatusIT from '../ITStatus'
+import StatusIT from './ITStatus'
 import NotesIT from '../ITNotes'
 
 import Paper from 'material-ui/Paper'
-import TextField from 'material-ui/TextField'
+//import TextField from 'material-ui/TextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import Divider from 'material-ui/Divider'
@@ -31,15 +31,23 @@ const styles = {
     divider: {
         width: '70%',
         paddingLeft: '30%'
-    }
+    },
+    selectField: {
+        height: '70px',
+        fontSize: '.9em',
+        width: '75%',
+    }, 
+    lowerSelectField: {
+        height: '70px',
+        fontSize: '.9em',
+        width: '75%',
+        marginTop: '-20px'
+    }  
   }
 
 
 class ITInfo extends Component {
 
-    newNetUpdate() {
-        console.log('here')
-    }
 
     render() {
         return(
@@ -55,7 +63,7 @@ class ITInfo extends Component {
                                         floatingLabelText="Network Provider"
                                         value={this.props.storeInfo.oldNetworkInfo.internet}
                                         onChange={this.newNetUpdate}
-                                        style={styles.selectFieldPad}
+                                        style={styles.selectField}
                                     >
                                         <MenuItem value={"Granite"} primaryText="Granite" />
                                         <MenuItem value={"GTT"} primaryText="GTT" />
@@ -66,7 +74,7 @@ class ITInfo extends Component {
                                         floatingLabelText="Phone Provider"
                                         value={this.props.storeInfo.oldNetworkInfo.phone}
                                         onChange={this.newNetUpdate}
-                                        style={styles.selectFieldPad}
+                                        style={styles.lowerSelectField}
                                     >
                                         <MenuItem value={"MetTel"} primaryText="MetTel" />
                                         <MenuItem value={"Verizon Wireless"} primaryText="Verizon Wireless" />
@@ -82,7 +90,7 @@ class ITInfo extends Component {
                                         floatingLabelText="Network Provider"
                                         value={this.props.storeInfo.newNetworkInfo.internet}
                                         onChange={this.newNetUpdate}
-                                        style={styles.selectFieldPad}
+                                        style={styles.selectField}
                                     >
                                         <MenuItem value={"Granite"} primaryText="Granite" />
                                         <MenuItem value={"GTT"} primaryText="GTT" />
@@ -93,6 +101,8 @@ class ITInfo extends Component {
                                         floatingLabelText="Phone Provider"
                                         value={this.props.storeInfo.newNetworkInfo.phone}
                                         onChange={this.newNetUpdate}
+                                        style={styles.lowerSelectField}
+                                        autoWidth={false}
                                     >
                                         <MenuItem value={"MetTel"} primaryText="MetTel" />
                                         <MenuItem value={"Verizon Wireless"} primaryText="Verizon Wireless" />
@@ -103,7 +113,7 @@ class ITInfo extends Component {
                                 </div>
                             </Col>
                             <Col>
-                                <StatusIT />
+                                <StatusIT storeInfo={this.props.storeInfo}/>
                             </Col>
                             <Col>
                                 <NotesIT />

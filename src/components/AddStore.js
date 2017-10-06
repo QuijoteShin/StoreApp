@@ -59,7 +59,8 @@ class AddStore extends Component {
                 phone: ""
             },
             interface: null,
-            posCount: null
+            posCount: null,
+            type: "",
         }
         this.handleDatechangeConstStart = this.handleDatechangeConstStart.bind(this)
         this.handleDatechangeConstEnd = this.handleDatechangeConstEnd.bind(this)
@@ -163,6 +164,16 @@ class AddStore extends Component {
                         onChange={ event => this.setState({storeName: event.target.value})} 
                         style={styles.leftPadding}
                     />
+                    <SelectField
+                        floatingLabelText="Store Remodel Type"
+                        value={this.state.type}
+                        onChange={ (event, index, value) => { this.setState({type: value})}}
+                    >
+                        <MenuItem value={"New"} primaryText="New" />
+                        <MenuItem value={"Relocation"} primaryText="Relocation" />
+                        <MenuItem value={"Major Remodel"} primaryText="Major Remodel" />
+                        <MenuItem value={"Minor Remodel"} primaryText="Minor Remodel" />
+                    </SelectField>
                     <br/> <br/>
                     <h4>Important Dates</h4>
                     <Divider style={styles.divider} />

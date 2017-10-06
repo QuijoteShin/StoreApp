@@ -59,9 +59,7 @@ router.route('/stores')
         store.newNetworkInfo.internet = req.body.newNetworkInfo.internet
         store.newNetworkInfo.phone = req.body.newNetworkInfo.phone
         store.interface = req.body.interface
-        // store.posEquipmentFinished = req.body.posEquipmentFinished
-        // store.networkEquipmentFinished = req.body.networkEquipmentFinished
-        // store.storeOnline = req.body.storeOnline
+        store.type = req.body.type
 
 
         store.save(function(err, store) {
@@ -72,6 +70,7 @@ router.route('/stores')
             res.json(store)
         }) 
     })
+
 
 
 

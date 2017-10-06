@@ -17,7 +17,7 @@ function stores(state = [], action) {
             //console.log('SAVE_STORE action.payload', state.data, action.payload)
             return {...state, data: state.data.concat(action.payload)}
         case ADD_COMPONENT_STATE:
-        return {...state, componentState: action.payload}
+            return {...state, componentState: action.payload}
         default:
             return state
     }

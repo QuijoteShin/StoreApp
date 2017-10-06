@@ -25,7 +25,9 @@ const storeSchema = new Schema({
     interface: Boolean,
     posEquipmentFinished: Boolean,
     networkEquipmentFinished: Boolean,
-    storeOnline: Boolean
-})
+    storeOnline: Boolean,
+    storeITReady: Boolean,
+    type: String
+})  
 
 module.exports = mongoose.model('Store', storeSchema)
