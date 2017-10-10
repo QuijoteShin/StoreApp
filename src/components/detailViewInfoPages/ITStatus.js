@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+import { updateItStatusState } from '../../actions'
+import { connect } from 'react-redux'
+
 import Checkbox from 'material-ui/Checkbox'
 import Divider from 'material-ui/Divider'
 import { Circle } from 'rc-progress'
@@ -21,7 +24,7 @@ const styles = {
         width: '70%',
         paddingLeft: '30%'
     },
-    progress: {
+    progress: { 
         width: '125px',
         height: '125px'
     },
@@ -41,7 +44,7 @@ class ITStatusIT extends Component {
         super(props)
         this.state = {
             open: true,
-            completed: 1,
+            percentCompleted: 1,
             ranCompleted: false,
             checkedPOS: false,
             checkedNetwork: false,
@@ -58,17 +61,40 @@ class ITStatusIT extends Component {
         this.handleCloseConfirm = this.handleCloseConfirm.bind(this)
     }
 
+    componentDidUpdate() {
+
+
+    }
 
     handleCloseConfirm() {
-        console.log("handelcloseConfirm", this.state)
-        this.setState({storeITReady: true, open: false, ranCompleted: false, checkedFinishedBoxDisabled: true})
+        //console.log("handelcloseConfirm", this.state)
+        this.setState({
+            storeITReady: true,
+            storeOnline: true, 
+            open: false, 
+            ranCompleted: false, 
+            checkedFinishedBoxDisabled: true
+        
+        })
+        this.props.dispatch(updateItStatusState({
+            checkedPOS: this.state.checkedPOS,
+            checkedNetwork: this.state.checkedNetwork,
+            checkedOnline: this.state.checkedOnline,
+            checkedPhone: this.state.checkedPhone,
+            posEquipmentFinished: this.state.posEquipmentFinished,
+            networkEquipmentFinished: this.state.networkEquipmentFinished,
+            phoneEquipmentFinished: this.state.phoneEquipmentFinished,
+            storeOnline: this.state.storeOnline,
+            storeITReady: this.state.storeITReady,
+            percentCompleted: this.state.percentCompleted
+        }))
     }
 
     handleCloseCancel() {
-        console.log("handelcloseCancel")
+        //console.log("handelcloseCancel")
         this.setState({
             open: true,
-            completed: 1,
+            percentCompleted: 1,
             ranCompleted: false,
             checkedPOS: false,
             checkedNetwork: false,
@@ -98,7 +124,7 @@ class ITStatusIT extends Component {
             />,
         ]
 
-        if(this.state.completed > 99 && !this.state.ranCompleted) {
+        if(this.state.percentCompleted > 99 && !this.state.ranCompleted) {
             return(
                 <div>
                     <Dialog
@@ -116,36 +142,32 @@ class ITStatusIT extends Component {
     }
 
     updateCheckPOS() {
-        if(this.state.checkedPOS) {
-            this.setState( (oldState) => {
-                return {
-                    completed: oldState.completed - 25
-                }
-            })
-        } else if (!this.state.checkedPOS) {
-            this.setState( (oldState) => {
-                return {
-                    completed: oldState.completed + 25
-                }
-            })
+        if(this.props.store.checkedPOS) {
+            this.props.dispatch(updateItStatusState({
+                percentCompleted: this.props.store.percentCompleted - 25,
+                checkedPOS: false
+
+            }))
+        } else if (!this.props.store.checkedPOS) {
+            this.props.dispatch(updateItStatusState({
+                percentCompleted: this.props.store.percentCompleted + 25,
+                checkedPOS: true
+            }))
         }
-        this.setState((oldState) => {
-            return {
-                checkedPOS: !oldState.checkedPOS,
-            };
-        });
+        console.log(this.props.store.checkedPOS)
     }
+
     updateCheckNet() {
         if(this.state.checkedNetwork) {
             this.setState( (oldState) => {
                 return {
-                    completed: oldState.completed - 25
+                    percentCompleted: oldState.percentCompleted - 25
                 }
             })
         } else if (!this.state.checkedNetwork) {
             this.setState( (oldState) => {
                 return {
-                    completed: oldState.completed + 25
+                    percentCompleted: oldState.percentCompleted + 25
                 }
             })
         }
@@ -159,13 +181,13 @@ class ITStatusIT extends Component {
         if(this.state.checkedOnline) {
             this.setState( (oldState) => {
                 return {
-                    completed: oldState.completed - 25
+                    percentCompleted: oldState.percentCompleted - 25
                 }
             })
         } else if (!this.state.checkedOnline) {
             this.setState( (oldState) => {
                 return {
-                    completed: oldState.completed + 25
+                    percentCompleted: oldState.percentCompleted + 25
                 }
             })
         }
@@ -179,13 +201,13 @@ class ITStatusIT extends Component {
         if(this.state.checkedPhone) {
             this.setState( (oldState) => {
                 return {
-                    completed: oldState.completed - 25
+                    percentCompleted: oldState.percentCompleted - 25
                 }
             })
         } else if (!this.state.checkedPhone) {
             this.setState( (oldState) => {
                 return {
-                    completed: oldState.completed + 25
+                    percentCompleted: oldState.percentCompleted + 25
                 }
             })
         }
@@ -208,14 +230,14 @@ class ITStatusIT extends Component {
 
 
     render() {
-        console.log('IT Status Props Store Info', this.props.storeInfo)
+        console.log('IT Status this.props.store', this.props.store)
         return(
             <div style={styles.statusHeader}>
                 <h4>Store Status</h4>
                 <Divider style={styles.divider} />
                 <br/>
                 <Circle 
-                    percent={this.state.completed}
+                    percent={this.props.store.percentCompleted}
                     strokeWidth="4" 
                     strokeColor="#00bcd4" 
                     style={styles.progress}
@@ -226,7 +248,7 @@ class ITStatusIT extends Component {
                 <br/>
                 <Checkbox
                     label="POS Equipment"
-                    checked={this.state.checkedPOS}
+                    checked={this.props.store.checkedPOS}
                     onCheck={this.updateCheckPOS.bind(this)}
                     style={styles.checkbox}
                     disabled={this.state.checkedFinishedBoxDisabled}
@@ -259,5 +281,16 @@ class ITStatusIT extends Component {
     }
 }
 
+ITStatusIT.defaultProps = {
+    componentState: [],
+    data: [],
+    itStatus: [],
+    loadedStore: []  
+  }
 
-export default ITStatusIT
+function mapStateToProps(state) {
+    return { store: state.stores.componentState.loadedStore, itStatus: state.stores.itStatus }
+}
+
+
+export default connect(mapStateToProps)(ITStatusIT)

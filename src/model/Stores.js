@@ -23,11 +23,17 @@ const storeSchema = new Schema({
             phone: String,
     },
     interface: Boolean,
+    checkedPhone: Boolean,
+    checkedPOS: Boolean,
+    checkedNetwork: Boolean,
+    checkedOnline: Boolean,
     posEquipmentFinished: Boolean,
     networkEquipmentFinished: Boolean,
+    phoneEquipmentFinished: Boolean,
     storeOnline: Boolean,
     storeITReady: Boolean,
-    type: String
+    type: String,
+    percentCompleted: { type: Number, default: 1 }
 })  
 
 module.exports = mongoose.model('Store', storeSchema)

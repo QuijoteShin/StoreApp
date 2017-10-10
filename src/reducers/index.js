@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import {  LOAD_STORES, SAVE_STORE, ADD_COMPONENT_STATE } from '../actions'
+import {  LOAD_STORES, SAVE_STORE, ADD_COMPONENT_STATE, UPDATE_IT_STATUS } from '../actions'
 
 
 const rootReducer = combineReducers({ 
@@ -18,6 +18,9 @@ function stores(state = [], action) {
             return {...state, data: state.data.concat(action.payload)}
         case ADD_COMPONENT_STATE:
             return {...state, componentState: action.payload}
+        case UPDATE_IT_STATUS:
+            console.log('Reducer', state.componentState.loadedStore)
+            return {...state, store: action.payload}
         default:
             return state
     }

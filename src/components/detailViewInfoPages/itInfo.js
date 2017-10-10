@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import StatusIT from './ITStatus'
-import NotesIT from '../ITNotes'
+import NotesIT from './ITNotes'
 
 import Paper from 'material-ui/Paper'
 //import TextField from 'material-ui/TextField'
@@ -70,7 +70,7 @@ class ITInfo extends Component {
                                         <MenuItem value={"AirCard"} primaryText="AirCard" />
                                         <MenuItem value={"Local DSL Provider"} primaryText="Local DSL Provider" />
                                     </SelectField>
-                                    <SelectField
+                                    <SelectField 
                                         floatingLabelText="Phone Provider"
                                         value={this.props.storeInfo.oldNetworkInfo.phone}
                                         onChange={this.newNetUpdate}

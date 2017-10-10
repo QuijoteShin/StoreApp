@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import StoreLoader from './StoreLoader'
 import AddStore from './AddStore'
-import StoreDetailsView from './StoreDetailsView'
+import StoreDetailsView from './detailViewInfoPages/StoreDetailsView'
 
 import * as actions from '../actions'
 

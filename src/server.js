@@ -70,6 +70,33 @@ router.route('/stores')
             res.json(store)
         }) 
     })
+    .put(function(req, res) {
+        //console.log('req', req.body)
+        Store.findById(req.body._id, function(err, store) {
+          if(err){
+              console.log(err)
+          }
+
+          
+            console.log('no error in put server request', store)  
+            console.log(req.body)
+            store.checkedNetwork = req.body.checkedNetwork
+            store.checkedOnline = req.body.checkedOnline
+            store.checkedPOS = req.body.checkedPOS
+            store.checkedPhone = req.body.checkedPhone
+            store.networkEquipmentFinished = req.body.networkEquipmentFinished
+            store.phoneEquipmentFinished = req.body.phoneEquipmentFinished
+            store.storeITReady = req.body.storeITReady
+            store.storeOnline = req.body.storeOnline
+
+            store.save(function(err) {
+                if(err) {
+                    res.send(err)
+                }
+                res.json(req.body)
+            })
+        })
+    })
 
 
 
